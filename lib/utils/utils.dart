@@ -29,10 +29,10 @@ Future<EventDetail> getEventDetail(int id) async {
   return EventDetail.fromJson(json.decode(response.body)['eventDetail']);
 }
 
-Future<Purchase> purchaseTicket(int id) async {
+Future<Purchase> purchaseTicket(double amount, int id) async {
   http.Response response = await http.post(Uri.parse(purchase),
       body: json.encode({
-        "purchase": {"dateTime": "2/13/2021 16:00:00", "purchaseAmount": 120, "paymentMethodType": "visa", "eventId": 3}
+        "purchase": {"dateTime": DateTime.now(), "purchaseAmount": amount, "paymentMethodType": "visa", "eventId": id}
       }),
       headers: {"Authorization": "Bearer $token", "content-type": "application/json"});
   return purchaseFromJson(response.body);

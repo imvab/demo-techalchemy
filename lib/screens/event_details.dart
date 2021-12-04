@@ -271,7 +271,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                   onPressed: isDone
                       ? () {}
                       : () async {
-                          Purchase purchase = await purchaseTicket(widget.id);
+                          Purchase purchase = await purchaseTicket(widget.price, widget.id);
                           controller.success();
                           await Future.delayed(const Duration(seconds: 2));
                           showConfirmationSheet(purchase.id, context);
