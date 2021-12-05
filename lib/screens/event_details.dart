@@ -271,10 +271,23 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                   onPressed: isDone
                       ? () {}
                       : () async {
-                          Purchase purchase = await purchaseTicket(widget.price, widget.id);
-                          controller.success();
-                          await Future.delayed(const Duration(seconds: 2));
-                          showConfirmationSheet(purchase.id, context);
+                          try {
+                            Purchase purchase = await purchaseTicket(widget.price, widget.id);
+                            controller.success();
+                            await Future.delayed(const Duration(seconds: 2));
+                            showConfirmationSheet(purchase.id, context);
+                          } catch (e) {
+                            controller.stop();
+                            final snackBar = SnackBar(
+                              content: const Text('Encountered an error', style: TextStyle(color: Colors.white)),
+                              backgroundColor: (accentColor),
+                              action: SnackBarAction(
+                                label: 'dismiss',
+                                onPressed: () {},
+                              ),
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          }
                         },
                 ))));
   }

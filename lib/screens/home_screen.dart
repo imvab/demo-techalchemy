@@ -79,6 +79,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               );
                             })),
                       ]);
+                    } else if (snapshot.hasError) {
+                      return const Center(child: Text("Encountered an error", style: TextStyle(color: Colors.black)));
                     } else {
                       return const Center(child: CircularProgressIndicator(color: accentColor));
                     }
@@ -100,6 +102,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         return ListView.builder(
                             itemCount: snapshot.data.eventDetails.length,
                             itemBuilder: (context, index) => EventCardBig(snapshot.data.eventDetails[index]));
+                      } else if (snapshot.hasError) {
+                        return const Center(child: Text("Encountered an error", style: TextStyle(color: Colors.black)));
                       } else {
                         return const Center(child: CircularProgressIndicator(color: accentColor));
                       }
