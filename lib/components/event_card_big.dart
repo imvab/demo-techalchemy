@@ -5,6 +5,7 @@ import 'package:demo_app/models/event_detail.dart';
 import 'package:demo_app/screens/event_details.dart';
 import 'package:demo_app/utils/colors.dart';
 import 'package:demo_app/utils/custom_icons.dart';
+import 'package:demo_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class EventCardBig extends StatefulWidget {
@@ -26,8 +27,8 @@ class _EventCardBigState extends State<EventCardBig> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => EventDetailsScreen(
-                          widget.event.name, widget.event.mainImage, widget.event.price, widget.event.id,
+                      builder: (context) => EventDetailsScreen(widget.event.name, widget.event.mainImage,
+                          widget.event.price, widget.event.id, widget.event.dateTime,
                           eventDetail: widget.event),
                     ),
                   );
@@ -99,7 +100,7 @@ class _EventCardBigState extends State<EventCardBig> {
                                       CustomIcons.access_time,
                                       color: Colors.white,
                                     ),
-                                    Text(widget.event.dateTime,
+                                    Text(parseDate(widget.event.dateTime),
                                         style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                                     Container(
                                       child: Center(

@@ -2,8 +2,6 @@
 
 import 'dart:convert';
 
-import 'package:jiffy/jiffy.dart';
-
 EventDetails eventDetailsFromJson(String str) => EventDetails.fromJson(json.decode(str));
 
 String eventDetailsToJson(EventDetails data) => json.encode(data.toJson());
@@ -65,17 +63,9 @@ class EventDetail {
   String mainImage;
   int id;
 
-  static String parseDate(String json) {
-    List<int> date = json.substring(0, 9).split('/').map((e) => int.parse(e)).toList();
-    List<int> time = json.substring(10).split(':').map((e) => int.parse(e)).toList();
-    Jiffy jif = Jiffy(
-        {"year": date[2], "month": date[1], "day": date[0], "hour": time[0], "minute": time[1], "second": time[2]});
-    return jif.E + ", ${jif.day} ${jif.MMM} ${jif.year} ${jif.Hm}";
-  }
-
   factory EventDetail.fromJson(Map<String, dynamic> json) => EventDetail(
         name: json["name"],
-        dateTime: parseDate(json["dateTime"]),
+        dateTime: json["dateTime"],
         bookBy: json["bookBy"],
         ticketsSold: json["ticketsSold"],
         maxTickets: json["maxTickets"],

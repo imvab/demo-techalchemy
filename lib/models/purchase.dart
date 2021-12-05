@@ -16,7 +16,7 @@ class Purchase {
   });
 
   String dateTime;
-  int purchaseAmount;
+  double purchaseAmount;
   String paymentMethodType;
   int eventId;
   int id;

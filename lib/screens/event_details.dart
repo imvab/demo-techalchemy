@@ -20,8 +20,10 @@ class EventDetailsScreen extends StatefulWidget {
   final String eventName;
   final String imageUrl;
   final double price;
+  final String dateTime;
   final int id;
-  const EventDetailsScreen(this.eventName, this.imageUrl, this.price, this.id, {this.eventDetail, this.event, Key key})
+  const EventDetailsScreen(this.eventName, this.imageUrl, this.price, this.id, this.dateTime,
+      {this.eventDetail, this.event, Key key})
       : super(key: key);
 
   @override
@@ -272,14 +274,14 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                       ? () {}
                       : () async {
                           try {
-                            Purchase purchase = await purchaseTicket(widget.price, widget.id);
+                            Purchase purchase = await purchaseTicket(widget.price, widget.id.toInt(), widget.dateTime);
                             controller.success();
                             await Future.delayed(const Duration(seconds: 2));
                             showConfirmationSheet(purchase.id, context);
                           } catch (e) {
                             controller.stop();
                             final snackBar = SnackBar(
-                              content: const Text('Encountered an error', style: TextStyle(color: Colors.white)),
+                              content: Text(e.toString(), style: const TextStyle(color: Colors.white)),
                               backgroundColor: (accentColor),
                               action: SnackBarAction(
                                 label: 'dismiss',
