@@ -273,23 +273,23 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                   onPressed: isDone
                       ? () {}
                       : () async {
-                          try {
-                            Purchase purchase = await purchaseTicket(widget.price, widget.id.toInt(), widget.dateTime);
-                            controller.success();
-                            await Future.delayed(const Duration(seconds: 2));
-                            showConfirmationSheet(purchase.id, context);
-                          } catch (e) {
-                            controller.stop();
-                            final snackBar = SnackBar(
-                              content: Text(e.toString(), style: const TextStyle(color: Colors.white)),
-                              backgroundColor: (accentColor),
-                              action: SnackBarAction(
-                                label: 'dismiss',
-                                onPressed: () {},
-                              ),
-                            );
-                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                          }
+                          // try {
+                          Purchase purchase = await purchaseTicket(widget.price, widget.id.toInt(), widget.dateTime);
+                          controller.success();
+                          await Future.delayed(const Duration(seconds: 2));
+                          showConfirmationSheet(purchase.id, context);
+                          // } catch (e) {
+                          //   controller.stop();
+                          //   final snackBar = SnackBar(
+                          //     content: Text(e.toString(), style: const TextStyle(color: Colors.white)),
+                          //     backgroundColor: (accentColor),
+                          //     action: SnackBarAction(
+                          //       label: 'dismiss',
+                          //       onPressed: () {},
+                          //     ),
+                          //   );
+                          //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          // }
                         },
                 ))));
   }

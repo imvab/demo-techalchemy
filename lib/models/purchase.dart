@@ -25,7 +25,7 @@ class Purchase {
     json = json['purchase'];
     return Purchase(
       dateTime: json["dateTime"],
-      purchaseAmount: json["purchaseAmount"],
+      purchaseAmount: json["purchaseAmount"].toDouble(),
       paymentMethodType: json["paymentMethodType"],
       eventId: json["eventId"],
       id: json["id"],
